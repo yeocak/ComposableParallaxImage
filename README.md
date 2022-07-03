@@ -1,1 +1,1 @@
-Creating project
+Editing project
