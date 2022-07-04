@@ -2,7 +2,7 @@
 
 You can use this view for do parallax effect to any image.
 
-![](TODO)
+![](https://github.com/yeocak/ComposableParallaxImage/blob/main/forgithub/preview_gif.gif)
 
 ----
 
