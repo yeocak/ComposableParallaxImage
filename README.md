@@ -1,12 +1,10 @@
 ## Parallax Effect in Compose Image
 
-You can use this view for do parallax effect to any image.
-
 ![](https://github.com/yeocak/ComposableParallaxImage/blob/main/forgithub/preview_gif.gif)
 
 ----
 
-#### Example usage
+### Example usage
 
 	ParallaxImage(
 		image = R.drawable.test_photo,
@@ -16,7 +14,7 @@ You can use this view for do parallax effect to any image.
 
 ------
 
-#### Features
+### Features
 
 - [ ] Creating class instance for motion sensor
 - [ ] Creating class instance for parallax function (maybe)
@@ -26,4 +24,19 @@ You can use this view for do parallax effect to any image.
 
 -----
 
-#### Add to your project (Coming soon)
+### Add to your project
+
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+Add the dependency in app.gradle:
+
+	dependencies {
+	        implementation 'com.github.yeocak:ComposableParallaxImage:0.4'
+	}
