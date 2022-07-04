@@ -51,26 +51,42 @@ fun ParallaxImage(
             contentDescription = null,
             modifier = Modifier
                 .align(Alignment.Center)
-                .offset((positions.value.first * 8).dp, -(positions.value.second * 8).dp)
+                .offset((positions.value.first * 8).dp, -(positions.value.second * 10).dp)
                 .padding(imagePadding + 40.dp)
                 .clip(RoundedCornerShape(10.dp))
                 .graphicsLayer { alpha = 0.99f }
                 .drawWithContent {
                     drawContent()
                     drawRect(
-                        brush = Brush.horizontalGradient(fadeSideToRight, this.size.width * 9f / 10f, this.size.width),
+                        brush = Brush.horizontalGradient(
+                            fadeSideToRight,
+                            this.size.width * 9f / 10f,
+                            this.size.width
+                        ),
                         blendMode = BlendMode.DstIn
                     )
                     drawRect(
-                        brush = Brush.horizontalGradient(fadeSideToLeft, 0f, this.size.width * 1f / 10f),
+                        brush = Brush.horizontalGradient(
+                            fadeSideToLeft,
+                            0f,
+                            this.size.width * 1f / 10f
+                        ),
                         blendMode = BlendMode.DstIn
                     )
                     drawRect(
-                        brush = Brush.verticalGradient(fadeSideToLeft, 0f, this.size.height * 1f / 10f),
+                        brush = Brush.verticalGradient(
+                            fadeSideToLeft,
+                            0f,
+                            this.size.height * 1f / 10f
+                        ),
                         blendMode = BlendMode.DstIn
                     )
                     drawRect(
-                        brush = Brush.verticalGradient(fadeSideToRight, this.size.height * 9f / 10f, this.size.height),
+                        brush = Brush.verticalGradient(
+                            fadeSideToRight,
+                            this.size.height * 9f / 10f,
+                            this.size.height
+                        ),
                         blendMode = BlendMode.DstIn
                     )
                 }
