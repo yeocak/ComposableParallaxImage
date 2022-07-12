@@ -8,6 +8,11 @@ import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 import androidx.annotation.DrawableRes
+import androidx.annotation.FloatRange
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
 import kotlin.math.roundToInt
 
 private const val BITMAP_SCALE = 0.4f
@@ -46,5 +51,47 @@ internal fun Context.blurImage(
 
     return Bitmap.createScaledBitmap(
         outputBitmap, image.width, image.height, false
+    )
+}
+
+internal fun ContentDrawScope.blurEdges(
+    transparentColor: Color,
+    @FloatRange(from = 0.0, to = 1.0) blurEdgeRatio: Float
+) {
+    val fadeSideToRight = listOf(transparentColor, Color.Transparent)
+    val fadeSideToLeft = fadeSideToRight.reversed()
+
+    drawContent()
+    drawRect(
+        brush = Brush.horizontalGradient(
+            fadeSideToRight,
+            this.size.width * blurEdgeRatio,
+            this.size.width
+        ),
+        blendMode = BlendMode.DstIn
+    )
+    drawRect(
+        brush = Brush.horizontalGradient(
+            fadeSideToLeft,
+            0f,
+            this.size.width * (1 - blurEdgeRatio)
+        ),
+        blendMode = BlendMode.DstIn
+    )
+    drawRect(
+        brush = Brush.verticalGradient(
+            fadeSideToLeft,
+            0f,
+            this.size.height * (1 - blurEdgeRatio)
+        ),
+        blendMode = BlendMode.DstIn
+    )
+    drawRect(
+        brush = Brush.verticalGradient(
+            fadeSideToRight,
+            this.size.height * blurEdgeRatio,
+            this.size.height
+        ),
+        blendMode = BlendMode.DstIn
     )
 }
